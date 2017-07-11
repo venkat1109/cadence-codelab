@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Cadence Bistro - Northwests finest dining establishment</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="/eatsapp/webserver/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/eatsapp/webserver/assets/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="/eatsapp/webserver/assets/css/bootstrap2-toggle.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="/eatsapp/webserver/assets/js/jquery-3.2.1.min.js"></script>
+        <script src="/eatsapp/webserver/assets/js/bootstrap.min.js"></script>
+        <script src="/eatsapp/webserver/assets/js/bootstrap2-toggle.min.js"></script>
+    </head>
+    <body style="padding-bottom: 70px; padding-top: 70px">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                      {{ if eq . "eats" }}
+                        <a class="navbar-brand" href="/eats-menu">Bistro - Eats Service</a>
+                    {{ end }}
+
+                    {{ if eq . "restaurant" }}
+                        <a class="navbar-brand" href="/restaurant">Bistro - Restaurant Service</a>
+                    {{ end }}
+
+                    {{ if eq . "courier" }}
+                        <a class="navbar-brand" href="/courier">Bistro - Courier Service</a>
+                    {{ end }}
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    {{ if eq . "eats" }}
+                        <ul class="nav navbar-nav">
+                            <li><a href="/eats-menu">Menu</a></li>
+                            <li><a href="/eats-orders">Orders</a></li>
+                        </ul>
+                        <p class="navbar-text navbar-right">Welcome <a class="navbar-link">Joe</a>!</p>
+                    {{ end }}
+
+                    {{ if eq . "restaurant" }}
+                        <p class="navbar-text navbar-right">Welcome <a class="navbar-link">Cadence Bistro</a>!</p>
+                    {{ end }}
+
+                    {{ if eq . "courier" }}
+                        <p class="navbar-text navbar-right">Welcome <a class="navbar-link">John</a>!</p>
+                    {{ end }}
+                </div>
+            </div>
+        </nav>
+        {{ if eq . "eats" }}
+            <nav class="navbar navbar-inverse navbar-fixed-bottom">
+                <div class="container">
+                    <p class="navbar-text navbar-right">Powerd by <a class="navbar-link" href="http://github.com/uber/cadence">Cadence</a></p>
+                </div>
+            </nav>
+        {{ end }}

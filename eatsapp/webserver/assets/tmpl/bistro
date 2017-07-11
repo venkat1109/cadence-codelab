@@ -1,0 +1,10 @@
+<html>
+    <head>
+        <title>Cadence Bistro</title>
+    </head>
+    <body style="margin: 0; padding=0px">
+        <iframe src="/eats-menu" frameborder="0" scrolling="yes" style="height: 100%; width: 50%; float: left;" height="100%" width="50%" align="left"></iframe>
+         <iframe src="/restaurant" frameborder="0" scrolling="yes" style="height: 60%; width: 50%;" align="right"></iframe>
+         <iframe src="/courier" frameborder="0" scrolling="yes" style="height: 40%; width: 50%;" align="right"></iframe>
+    </body>
+</html>

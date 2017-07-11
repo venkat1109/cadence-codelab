@@ -1,0 +1,12 @@
+package: github.com/venkat1109/cadence-codelab
+import:
+- package: github.com/pborman/uuid
+- package: github.com/uber-go/tally
+  subpackages:
+  - m3
+- package: go.uber.org/cadence
+- package: go.uber.org/zap
+  subpackages:
+  - zapcore
+- package: github.com/uber/tchannel-go
+- package: github.com/urfave/cli

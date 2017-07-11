@@ -1,0 +1,60 @@
+{{ template "header" "eats" }}
+        <div class="container">
+          <div class="jumbotron">
+            <h1>Cadence Bistro</h1>
+            <p>Pacific northwests finest dining establishment.</p>
+          </div>
+        </div>
+        <div class="container">
+            <form id="order" action="/eats-orders" method="POST">
+                <div class="page-header">
+                    <h1>Menu</h1>
+                  </div>
+
+            {{ range .Items }}
+                <div class="row" style="margin-bottom: 10px">
+                    <div class="col-xs-2">
+                        <img class="img-responsive" src="{{ .Image }}" />
+                    </div>
+                    <div class="col-xs-6">
+                        <div><strong>{{ .Name }}</strong></div>
+                        <div>{{ .Description }} </div>
+                    </div>    
+                    <div class="col-xs-1">
+                        ${{ .Price }} 
+                    </div>
+                    <div class="col-xs-3">
+                        <input class="form-control" name="item-id" value="{{ .ID }}" type="checkbox" data-toggle="toggle" data-on=" " data-onstyle="success" data-off=" " data-height="20px" data-width="30px">
+                    </div>
+                </div>
+            {{ end }}
+
+                <div class="row">
+                    <div class="col-xs-9"></div>
+                    <div class="col-xs-3">
+                        <button type="submit" class="btn btn-primary">Place Order</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            function submitOrder(event) {
+                event.preventDefault()
+                
+                order = $("#order").serialize()
+                console.log(order)
+
+                  $.post("/eats-orders", order )
+                      .always( showResponse )
+            }
+
+            function showResponse(data, status, rsp) {
+                console.log(rsp)
+                if (rsp.status == 302) { 
+                    window.location = rsp.getResponseHeader('Location')
+                }
+            }
+        </script>
+
+{{ template "footer" . }}

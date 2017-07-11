@@ -1,0 +1,21 @@
+items:
+  - id: 1
+    name: "Fruite Platter"
+    description: "A great-tasting, nutritious fruit mix made with apples, blueberries and strawberries."
+    image: "/eatsapp/webserver/assets/images/fruite.jpg"
+    price: 14
+  - id: 2
+    name: "Chocolate Chip Cookies"
+    description: "Delicious chocolate chip cookies baked fresh every morning."
+    image: "/eatsapp/webserver/assets/images/cookies.jpg"
+    price: 10
+  - id: 3
+    name: "Assorted nuts"
+    description: "Satifly your late afternoon cravings."
+    image: "/eatsapp/webserver/assets/images/nuts.jpg"
+    price: 9
+  - id: 4
+    name: "Cake"
+    description: "Chocolate cake made from our secret recepie."
+    image: "/eatsapp/webserver/assets/images/cake.jpg"
+    price: 9

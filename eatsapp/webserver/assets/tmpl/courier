@@ -1,0 +1,90 @@
+{{ template "header" "courier" }}
+    {{ define "job-buttons" }}
+        {{ if eq .Status "PENDING" }}
+            <a class="btn btn-sm btn-success" onclick="acceptJob({{ .OrderID }})">Accept</a>
+                <a class="btn btn-sm btn-danger" onclick="declineJob({{ .OrderID }})">Decline</a>
+        {{ end }}
+
+        {{ if eq .Status "ACCEPTED" }}
+            <a class="btn btn-sm btn-primary {{ if len .PickupTaskToken | eq 0 }}disabled{{ end }}" onclick="pickeUpJob({{ .OrderID }})">Picked Up</a>
+        {{ end }}
+
+        {{ if eq .Status "PICKED_UP" }}
+            <a class="btn btn-sm btn-primary {{ if len .CompletTaskToken | eq 0 }}disabled{{ end }}" onclick="completeJob({{ .OrderID }})">Delivered</a>
+        {{ end }}
+
+        {{ if eq .Status "COMPLETED" }}
+            <span class="label label-success">Completed</span>
+        {{ end }}
+
+        {{ if eq .Status "REJECTED" }}
+            <span class="label label-danger">Rejected/Failed</span>
+        {{ end }}
+    {{ end }}
+
+    {{ define "job" }}
+        <div class="row" style="margin-bottom: 10px">
+            <div class="col-xs-7">
+                {{ .OrderID }}
+            </div>
+            <div class="col-xs-4">
+                {{ template "job-buttons" . }}
+            </div>
+          </div>
+      {{ end }}
+
+      <div id="page" class="container">
+        <div>John: Total Jobs <span class="badge">{{ len .Jobs }}</span> </div>
+        <div class="page-header">
+            <h5>Active Job</h5>
+          </div>
+          {{ range .Jobs }}
+              {{ if ne .Status "COMPLETED" }}
+                  {{ template "job" . }} 
+              {{ end }}
+          {{ end }}
+          <div class="page-header">
+            <h5>Completed Jobs</h5>
+          </div>
+          {{ range .Jobs }}
+              {{ if eq .Status "COMPLETED" }}
+                  {{ template "job" . }} 
+              {{ end }}
+          {{ end }}
+      </div>
+
+      <script>
+          function acceptJob(id) {
+            changeOrderStatus(id, "accept")
+        }
+
+        function declineJob(id) {
+            changeOrderStatus(id, "decline")
+        }
+
+        function pickeUpJob(id) {
+            changeOrderStatus(id, "picked_up")
+        }
+
+        function completeJob(id) {
+            changeOrderStatus(id, "completed")
+        }
+
+        function changeOrderStatus(id, action) {
+            console.log(id + " " + action)
+
+            $.ajax({
+                url: "/courier?id=" + id + "&action=" + action,
+                method: "PATCH",
+                success: function(result) {
+                    console.log(result)
+                    location.reload()
+                },
+                error: function(rsp, status, err) {
+                    alert(err)
+                }
+            })
+        }
+      </script>
+      {{ template "auto-refresh" }}
+{{ template "footer" . }}

@@ -1,0 +1,88 @@
+hash: 239964a799ec1fbf7a0b7baf624d44d17b391b2fa5d3ec271739eb3dce453f9a
+updated: 2017-07-08T12:11:03.629629856-07:00
+imports:
+- name: github.com/apache/thrift
+  version: 9549b25c77587b29be4e0b5c258221a4ed85d37a
+  subpackages:
+  - lib/go/thrift
+- name: github.com/davecgh/go-spew
+  version: 346938d642f2ec3594ed81d874461961cd0faa76
+  subpackages:
+  - spew
+- name: github.com/facebookgo/clock
+  version: 600d898af40aa09a7a93ecb9265d87b0504b6f03
+- name: github.com/opentracing/opentracing-go
+  version: 1949ddbfd147afd4d964a9f00b24eb291e0e7c38
+  subpackages:
+  - ext
+  - log
+- name: github.com/pborman/uuid
+  version: a97ce2ca70fa5a848076093f05e639a89ca34d06
+- name: github.com/pmezard/go-difflib
+  version: 792786c7400a136282c1664665ae0a8db921c6c2
+  subpackages:
+  - difflib
+- name: github.com/stretchr/objx
+  version: 1a9d0bb9f541897e62256577b352fdbc1fb4fd94
+- name: github.com/stretchr/testify
+  version: f6abca593680b2315d2075e0f5e2a9751e3f431a
+  subpackages:
+  - assert
+  - mock
+  - require
+- name: github.com/uber-go/atomic
+  version: e682c1008ac17bf26d2e4b5ad6cdd08520ed0b22
+- name: github.com/uber-go/tally
+  version: 88e9c75b0cfc84139ad1bae3b7f123786cfd0770
+  subpackages:
+  - m3
+- name: github.com/uber/tchannel-go
+  version: b99c1d7cecb0fdc882bed0098e7cae6ec7459059
+  subpackages:
+  - internal/argreader
+  - relay
+  - thrift
+  - thrift/gen-go/meta
+  - tnet
+  - tos
+  - trand
+  - typed
+- name: github.com/urfave/cli
+  version: b892ba3809cd07fcf2b064e166b0c2e16e0147bd
+- name: go.uber.org/atomic
+  version: 4e336646b2ef9fc6e47be8e21594178f98e5ebcf
+- name: go.uber.org/cadence
+  version: 791d5a29c7a1acd77d7816772b33d99a52f958e3
+  subpackages:
+  - .gen/go/cadence
+  - .gen/go/shared
+  - common
+  - common/backoff
+  - common/metrics
+  - common/util
+  - mocks
+- name: go.uber.org/zap
+  version: fab453050a7a08c35f31fc5fff6f2dbd962285ab
+  subpackages:
+  - buffer
+  - internal/bufferpool
+  - internal/color
+  - internal/exit
+  - internal/multierror
+  - zapcore
+- name: golang.org/x/net
+  version: 30f03014b4f11f9f238fdeca8cca734746a24fbb
+  subpackages:
+  - bpf
+  - context
+  - internal/iana
+  - internal/socket
+  - ipv4
+  - ipv6
+- name: golang.org/x/tools
+  version: bce9606b3f617bc6280aab6abbf25962c23f398d
+  subpackages:
+  - cmd/guru/testdata/src/lib
+- name: gopkg.in/yaml.v2
+  version: a83829b6f1293c91addabc89d0571c246397bbf4
+testImports: []

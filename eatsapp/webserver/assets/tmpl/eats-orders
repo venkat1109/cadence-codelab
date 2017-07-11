@@ -1,0 +1,19 @@
+{{ template "header" "eats" }}
+    <div class="container">
+      {{ if .ShowOrderExistError }}
+      <div class="alert alert-danger" role="alert">
+        You already have an active order! Please click on the ID below to see its status!
+      </div>
+      {{ end }}
+          <div class="page-header">
+            <h1>Current Orders</h1>
+          </div>
+          {{ range .Orders.Executions }}
+            <div class="row">
+              <div class="col-sm-12">
+                  <a href="/eats-orders?page=eats-order-status&id={{ .Execution.WorkflowId }}&run_id={{ .Execution.RunId }}">{{ .Execution.WorkflowId }}</a>
+              </div>
+            </div>
+          {{ end }}
+      </div>
+{{ template "footer" . }}

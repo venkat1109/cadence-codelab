@@ -1,0 +1,75 @@
+{{ template "header" "eats" }}
+    <div id="page" class="container">
+        <div class="page-header">
+            <h1>Order: {{ .ID }}</h1>
+          </div>
+          <div class="container order-status-{{ .Status }}">
+              {{ range .Tasks }}
+              <div class="row step-row">
+                <div class="col-xs-12 step step-status-{{ .Status }}" >
+                    <span class="step_name">{{ .Name }}</span>
+                    <div class="row">
+                        {{ range .SubTasks }}
+                            <div class="col-xs-2 step child-step step-status-{{ .Status }}">
+                                <span class="step_name">{{ .Name }}</span>
+                            </div>
+                        {{ end }}
+                    </div>
+                </div>
+              </div>
+              {{ end }}
+          </div>
+          <div>&nbsp;</div>
+          <div class="panel panel-default">
+            <div class="panel-heading">Event History</div>
+            <div class="panel-body">
+                  <div class="container" style="transform: scaleY(-1)">
+                      {{ range .History.Events }}
+                      <div class="row" style="transform: scaleY(-1)">
+                        <div class="col-xs-7">
+                            {{ .EventType }}
+                        </div>
+              <div class="col-xs-1">
+                {{ .EventId }}
+              </div>
+                        <div class="col-xs-4">
+                            <span class="timestamp">{{ .Timestamp }}</span>
+                        </div>
+                      </div>
+                      {{ end }}
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <script>
+          function on_page_reload() {
+              $(".step_name").each(function() {
+                  txt = $(this).text()
+                  console.log(txt)
+                  $(this).text(txt.replace(/([A-Z])/g, ' $1').trim())
+              })
+
+              $(".timestamp").each(function() {
+                  txt = $(this).text()
+                  $(this).text(new Date(txt / 1000000).toISOString())
+              })
+          }
+
+          on_page_reload()
+      </script>
+      <style>
+          .step { padding: 5px; border: solid 1px; text-align: center; }
+          .step-row { margin: 10px }
+          .child-step { margin-left: 15px }
+          .step-status-s { background-color: lightgray }
+          .step-status-r { background-color: #FFFFCC }
+          .step-status-c { background-color: #99FFCC }
+          .step-status-f { background-color: #FF9999 }
+      .step-status-ca { background-color: #9999cc }
+          .order-status-r { background-color: #FFFFCC }
+          .order-status-c { background-color: #99FFCC }
+          .order-status-f { background-color: #FF9999 }
+      </style>
+      {{ template "auto-refresh" }}
+{{ template "footer" . }}

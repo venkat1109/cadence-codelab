@@ -1,0 +1,11 @@
+<script>
+    setInterval(customReload, 2000)
+
+    function customReload() {
+        $.get(location, function(data) {
+            var $rsp = $(data)
+            $("#page").html($rsp.filter("#page").contents())
+            on_page_reload()
+        })
+    }
+</script>

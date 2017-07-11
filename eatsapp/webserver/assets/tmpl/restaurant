@@ -1,0 +1,101 @@
+{{ template "header" "restaurant" }}
+    {{ define "order-buttons" }}
+        {{ if eq .Status "PENDING" }}
+            <a class="btn btn-sm btn-success" onclick="acceptOrder({{ .ID }})">Accept</a>
+                <a class="btn btn-sm btn-danger" onclick="declineOrder({{ .ID }})">Decline</a>
+        {{ end }}
+
+        {{ if eq .Status "PREPARING" }}
+            <a class="btn btn-sm btn-primary {{ if not .ReadySignal }}disabled{{ end }}" onclick="readyOrder({{ .ID }})">Ready</a>
+        {{ end }}
+
+        {{ if eq .Status "PREPARING" "READY" }}
+            <a class="btn btn-sm btn-primary {{ if not .PickUpSignal }}disabled{{ end }}" onclick="sentOrder({{ .ID }})">Out For Delivery</a>
+        {{ end }}
+
+        {{ if eq .Status "SENT" }}
+            <span class="label label-success">Completed</span>
+        {{ end }}
+
+        {{ if eq .Status "REJECTED" }}
+            <span class="label label-danger">Rejected/Failed</span>
+        {{ end }}
+    {{ end }}
+
+    {{ define "order" }}
+        <div class="row" style="margin-bottom: 10px">
+            <div class="col-xs-2">
+                {{ .ShortID }}
+            </div>
+            <div class="col-xs-4">
+                {{ range .Items }}
+                    {{ .Name }} <br/>
+                {{ end }}
+            </div>
+            <div class="col-xs-1">
+                {{ range .Items }}
+                    ${{ .Price }} <br/>
+                {{ end }}
+            </div>
+            <div class="col-xs-4">
+                {{ template "order-buttons" . }}
+            </div>
+          </div>
+      {{ end }}
+
+    <div id="page" class="container">
+        <div>Cadence Bistro: Total Orders <span class="badge">{{ len .Orders }}</span> </div>
+        <div class="page-header">
+            <h5>Active Orders</h5>
+          </div>
+          {{ range .Orders }}
+              {{ if eq .Status "PENDING" "PREPARING" "READY" }}
+                  {{ template "order" . }} 
+              {{ end }}
+          {{ end }}
+
+          <div class="page-header">
+            <h5>Completed Orders</h5>
+          </div>
+          {{ range .Orders }}
+              {{ if eq .Status "SENT" "REJECTED" }}
+                  {{ template "order" . }} 
+              {{ end }}
+          {{ end }}
+      </div>
+
+      <script>
+          function acceptOrder(id) {
+            changeOrderStatus(id, "accept")
+        }
+
+        function declineOrder(id) {
+            changeOrderStatus(id, "decline")
+        }
+
+        function readyOrder(id) {
+            changeOrderStatus(id, "ready")
+        }
+
+        function sentOrder(id) {
+            changeOrderStatus(id, "sent")
+        }
+
+        function changeOrderStatus(id, action) {
+            console.log(id + " " + action)
+
+            $.ajax({
+                url: "/restaurant?id=" + id + "&action=" + action,
+                method: "PATCH",
+                success: function(result) {
+                    console.log(result)
+                    location.reload()
+                },
+                error: function(rsp, status, err) {
+                    alert(err)
+                }
+            })
+        }
+      </script>
+      {{ template "auto-refresh" }}
+{{ template "footer" . }}
