@@ -23,7 +23,11 @@ eats: vendor/glide.updated mkbins $(COMMON_SRC)
 	go build -i -o bins/eats_worker eatsapp/worker/main.go
 	go build -i -o bins/eats_server eatsapp/webserver/main.go
 
-bins: cli helloworld eats
+cron: vendor/glide.updated mkbins $(COMMON_SRC)
+	go build -i -o bins/cron_worker cron/worker.go
+	go build -i -o bins/cron_starter cron/starter.go
+
+bins: cli helloworld eats cron
 
 clean:
 	rm -rf bins
