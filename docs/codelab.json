@@ -1,0 +1,23 @@
+{
+  "environment": "web",
+  "source": "1WmGqo9M49ELmnb61plU1pzn8le0nH1J3eLji8GEb5cA",
+  "format": "md",
+  "prefix": "../../",
+  "mainga": "UA-49880327-14",
+  "updated": "2017-07-14T23:13:15Z",
+  "id": "cadence",
+  "duration": 0,
+  "title": "",
+  "author": "Venkat Srinivasan",
+  "summary": "In this codelab, you'll learn the basic concepts of Cadence and build a real-world business application using the client SDK.",
+  "theme": "web",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "Web"
+  ],
+  "tags": [],
+  "feedback": "https://github.com/uber/cadence/issues",
+  "url": "cadence"
+}
